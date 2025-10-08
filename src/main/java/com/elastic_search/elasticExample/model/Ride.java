@@ -1,12 +1,12 @@
 package com.elastic_search.elasticExample.model;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -20,15 +20,30 @@ public class Ride {
 
     @Id
     private String id;
-    private int ride_id;
-    private int rider_id;
-    private int driver_id;
-    private int vehicle_id;
-    private String pickup_location;
-    private String drop_location;
+
+    @Field(name = "ride_id")
+    private int rideId;
+
+    @Field(name = "rider_id")
+    private int riderId;
+
+    @Field(name = "driver_id")
+    private int driverId;
+
+    @Field(name = "vehicle_id")
+    private int vehicleId;
+
+    @Field(name = "pickup_location")
+    private String pickupLocation;
+
+    @Field(name = "drop_location")
+    private String dropLocation;
+
     private String status;
     private double fare;
-    private LocalDateTime ride_date;
+
+    @Field(name = "ride_date")
+    private LocalDateTime rideDate;
 
     private Payment payment;
     private List<Rating> ratings;
@@ -37,18 +52,26 @@ public class Ride {
     @NoArgsConstructor
     @AllArgsConstructor
     public static class Payment {
+
         private double amount;
         private String method;
         private String status;
-        private LocalDateTime payment_date;
+
+        @Field(name = "payment_date")
+        private LocalDateTime paymentDate;
     }
 
     @Data
     @NoArgsConstructor
     @AllArgsConstructor
     public static class Rating {
-        private int given_by;
-        private int given_to;
+
+        @Field(name = "given_by")
+        private int givenBy;
+
+        @Field(name = "given_to")
+        private int givenTo;
+
         private int score;
         private String comment;
     }

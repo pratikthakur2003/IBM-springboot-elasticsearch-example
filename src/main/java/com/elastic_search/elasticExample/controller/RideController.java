@@ -28,7 +28,6 @@ public class RideController {
 
     @GetMapping("/search/{status}")
     public List<RideDocument> searchByStatus(@PathVariable String status) {
-        System.out.println("Status : " + status);
         return rideService.searchByStatus(status);
     }
 
